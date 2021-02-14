@@ -50,6 +50,10 @@ export default class Application extends EventEmitter {
     this.data.count = planetsCollection.length;
     this.data.planets = planetsCollection;
 
+    APP_READY.on('app is ready lol', function(){
+      console.log('something happening idk');
+    });
+    
     APP_READY.emit('app is ready lol');
   }
 
@@ -57,9 +61,7 @@ export default class Application extends EventEmitter {
     // Initiate classes and wait for async operations here.
     await this.setData();
 
-    APP_READY.on('app is ready lol', function(){
-      console.log('something happening idk');
-    });
+    
 
     this.emit(Application.events.APP_READY);
   }
