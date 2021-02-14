@@ -31,7 +31,7 @@ export default class Application extends EventEmitter {
    */
   async setData(){
     const EventEmitter = require('events');
-    const app_ready = new EventEmitter();
+    const APP_READY = new EventEmitter();
     const planets = [];
     let response = await fetch('https://swapi.booost.bg/api/planets/');
     let data = await response.json();
@@ -50,14 +50,14 @@ export default class Application extends EventEmitter {
     this.data.count = planetsCollection.length;
     this.data.planets = planetsCollection;
 
-    app_ready.emit('app is ready lol');
+    APP_READY.emit('app is ready lol');
   }
 
   async init() {
     // Initiate classes and wait for async operations here.
     await this.setData();
 
-    app_ready.on('app is ready lol', function(){
+    APP_READY.on('app is ready lol', function(){
       console.log('something happening idk');
     });
 
